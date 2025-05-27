@@ -1,0 +1,26 @@
+import type { Metadata } from "next";
+import { Press_Start_2P } from "next/font/google";
+import "./globals.css";
+
+
+
+export const metadata: Metadata = {
+  title: "Transcendence",
+  description: "A different Pong game",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        // className={`${terminal_char.variable} ${terminal_char.variable} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
+  );
+}
