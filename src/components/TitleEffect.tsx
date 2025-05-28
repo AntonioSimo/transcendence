@@ -23,8 +23,20 @@ const TypewriterText: React.FC<Typewriter> = ({ text, speed = 100, onComplete, s
 
   // same behavior for the "Display" state but this one will hold the index of the character being typed
   const [index, setIndex] = useState(0);
+  
+  // initializes when the typing effect starts
+  const [startTyping, setStartTyping] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setStartTyping(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => { // React hook that lets you perform side effects in functional components (in this case, typing effect handled it by setTimeout)
+    if (!startTyping) return; 
+    
     if (index < text.length) {
       const timeout = setTimeout(() => { // setTimeout is used to create a delay for the typing effect
         setDisplayed(prev => prev + text.charAt(index)); // native JavaScript string method that returns the character at a specified index.
@@ -34,7 +46,7 @@ const TypewriterText: React.FC<Typewriter> = ({ text, speed = 100, onComplete, s
     } else if (onComplete) {
       onComplete();
     }
-  }, [index, text, speed, onComplete]); //dependencies for the effect
+  }, [startTyping, index, text, speed, onComplete]); //dependencies for the effect
 
   const done = index === text.length; // Checks if the typing is complete
 

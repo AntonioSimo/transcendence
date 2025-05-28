@@ -7,15 +7,15 @@ import TitleEffect from "@/components/TitleEffect";
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (containerRef.current) {
-      gsap.fromTo( // fromTo() animates an element from its current state to a specified end state
-        containerRef.current,
-        { opacity: 0, scale: 0.9, y: 30 },
-        { opacity: 1, scale: 1, y: 0, duration: 3, ease: "power2.out" }
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (containerRef.current) {
+  //     gsap.fromTo( // fromTo() animates an element from its current state to a specified end state
+  //       containerRef.current,
+  //       { opacity: 0, scale: 0.9, y: 30 },
+  //       { opacity: 1, scale: 1, y: 0, duration: 3, ease: "power2.out" }
+  //     );
+  //   }
+  // }, []);
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-black text-white font-terminal">
