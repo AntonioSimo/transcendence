@@ -15,15 +15,11 @@ export const metadata: Metadata = {
   description: "A different Pong game",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={`${terminal_char.variable} antialiased`}>
+    <html lang="en" className={terminal_char.variable}>
+      <body className="bg-black text-white antialiased"
+      style={{ fontFamily: "var(--font-press-start-2p), monospace" }}>
         {children}
       </body>
     </html>
