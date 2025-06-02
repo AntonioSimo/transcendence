@@ -10,18 +10,24 @@ const BlinkingCursor = () => {
     const cursorRef = useRef<HTMLDivElement>(null);
   
     useEffect(() => {
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, { //animates an element from its current state to a specified end state
-          opacity: 0,
-          duration: 0.6,
-          repeat: -1,
-          yoyo: true,
-          ease: "none",
-        });
-      }
-    }, []);
-  
-    return <div ref={cursorRef} className="w-2 h-10 bg-white inline-block ml-1" />; //cursor style
-  };
+    if (cursorRef.current) {
+    gsap.to(cursorRef.current, { //animates an element from its current state to a specified end state
+        opacity: 0,
+        duration: 0.6,
+        repeat: -1,
+        yoyo: true,
+        ease: "none",
+        delay: 0.2,
+      });
+    }
+  }, []);
+
+  return (
+    <div
+      ref={cursorRef}
+      className="w-2 h-10 bg-white inline-block ml-3 align-middle"
+    />
+  );
+};
   
   export default BlinkingCursor;
