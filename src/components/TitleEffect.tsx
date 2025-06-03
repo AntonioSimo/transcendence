@@ -1,13 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AnimatedIntroCursor from "./AnimatedIntroCursor";
 import TypewriterText from "./TypewriterText";
 
-export default function TitleEffect() {
-  const [showFirstLine, setShowFirstLine] = useState(false); // State to control the visibility of the first line
-  const [showSecond, setShowSecond] = useState(false); // State to control the visibility of the second line
-  const [startErase, setStartErase] = useState(false);
+interface TitleEffectProps {
+  onComplete: () => void;
+}
+
+export default function TitleEffect({ onComplete }: TitleEffectProps) {
+  const [showFirstLine, setShowFirstLine] = useState(false);
+  const [showSecond, setShowSecond] = useState(false);
+  const [showArrow, setShowArrow] = useState(false);
+
+  useEffect(() => {
+    if (showSecond && showArrow) {
+      const timer = setTimeout(() => {
+        onComplete();
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showSecond, showArrow, onComplete]);
 
   return (
     <div className="text-4xl min-h-screen flex flex-col items-center justify-center gap-12">
@@ -17,24 +31,34 @@ export default function TitleEffect() {
 
       {showFirstLine && (
         <TypewriterText
-          text="Transcendence"
+          text="TRANSCENDENCE"
           speed={100}
-          onComplete={() => setShowSecond(true)}
-          showCursor={!showSecond}
-          erase={startErase}
-          onEraseComplete={() => console.log("Erase done")}
+          onComplete={() => {
+            setTimeout(() => setShowSecond(true), 1500);
+          }}
+          showCursor={true}
+          cursorAlwaysOn={true}
         />
       )}
 
       {showSecond && (
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
         <TypewriterText
-          text="scroll down to getting started"
+          text="SCROLL DOWN TO GETTING STARTED"
           speed={50}
           showCursor={true}
-          cursorAlwaysOn={true}
-          erase={startErase}
-          onEraseComplete={() => console.log("Erase done")}
+          onComplete={() => setShowArrow(true)}
+          className="text-xl text-white mb-6 text-center"
         />
+        <div
+          className={`text-3xl text-white ${
+            showArrow ? "animate-slideUpAndBounce visible" : "invisible"
+          }`}
+          style={{ minHeight: "1.5em"}}
+        >
+          ↓
+        </div>
+      </div>
       )}
     </div>
   );

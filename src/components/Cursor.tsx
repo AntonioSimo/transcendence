@@ -13,11 +13,11 @@ const BlinkingCursor = () => {
     if (cursorRef.current) {
     gsap.to(cursorRef.current, { //animates an element from its current state to a specified end state
         opacity: 0,
-        duration: 0.6,
-        repeat: -1,
-        yoyo: true,
-        ease: "none",
-        delay: 0.2,
+        duration: 0.6, 
+        repeat: -1, 
+        yoyo: true, // yoyo makes the animation reverse back to the start after reaching the end
+        ease: "none", // "none" means no easing is applied, so the animation speed is constant
+        delay: 0.2, 
       });
     }
   }, []);
@@ -25,7 +25,7 @@ const BlinkingCursor = () => {
   return (
     <div
       ref={cursorRef}
-      className="w-2 h-10 bg-white inline-block ml-3 align-middle"
+      className="w-2 h-10 bg-white inline-block ml-3 align-middle" // Styles the cursor with a width of 2px, height of 10px, white background, and inline-block display
     />
   );
 };
