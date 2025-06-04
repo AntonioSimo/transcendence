@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
@@ -8,6 +9,7 @@ import TypewriterText from "./TypewriterText";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SecondPanel() {
+  const router = useRouter();
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,26 +30,36 @@ export default function SecondPanel() {
   return (
     <div
       ref={containerRef}
-      className="text-4xl min-h-screen w-full flex items-center justify-center bg-blue-1000">
-
+      className="text-4xl min-h-screen w-full flex items-center justify-center bg-blue-1000"
+    >
       <div className="flex flex-row items-center gap-x-50">
         {showLogin && (
-          <TypewriterText
-            text="LOG IN"
-            speed={100}
-            onComplete={() => setShowSignup(true)}
-            showCursor={!showSignup}
-            cursorAlwaysOn={true}
-          />
+          <div
+            className="cursor-pointer"
+            onClick={() => router.push("/authentication?mode=login")}
+          >
+            <TypewriterText
+              text="LOG IN"
+              speed={100}
+              onComplete={() => setShowSignup(true)}
+              showCursor={!showSignup}
+              cursorAlwaysOn={true}
+            />
+          </div>
         )}
 
         {showSignup && (
-          <TypewriterText
-            text="SIGN UP"
-            speed={100}
-            showCursor={true}
-            cursorAlwaysOn={true}
-          />
+          <div
+            className="cursor-pointer"
+            onClick={() => router.push("/authentication?mode=signup")}
+          >
+            <TypewriterText
+              text="SIGN UP"
+              speed={100}
+              showCursor={true}
+              cursorAlwaysOn={true}
+            />
+          </div>
         )}
       </div>
     </div>

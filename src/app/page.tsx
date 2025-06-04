@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import TitleEffect from "@/components/TitleEffect";
 import SlideInPanel from "@/components/SlideInPanel";
 import SecondPanel from "@/components/TmpAuthPage";
-import ThirdPanel from "@/components/GameMode";
+// import ThirdPanel from "@/components/GameMode";
 
 export default function Home() {
   const [introDone, setIntroDone] = useState(false);
@@ -26,8 +26,7 @@ export default function Home() {
       {introDone && (
         <>
           <SecondPanel />
-          <ThirdPanel />
-          <SlideInPanel />
+          {/* <ThirdPanel /> */}
         </>
       )}
     </main>
