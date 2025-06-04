@@ -33,7 +33,7 @@ export default function SecondPanel() {
       <div className="flex flex-row items-center gap-x-50">
         {showLogin && (
           <TypewriterText
-            text="LOGIN"
+            text="LOG IN"
             speed={100}
             onComplete={() => setShowSignup(true)}
             showCursor={!showSignup}
@@ -43,7 +43,7 @@ export default function SecondPanel() {
 
         {showSignup && (
           <TypewriterText
-            text="SIGNUP"
+            text="SIGN UP"
             speed={100}
             showCursor={true}
             cursorAlwaysOn={true}

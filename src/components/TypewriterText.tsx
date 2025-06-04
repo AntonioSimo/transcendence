@@ -38,10 +38,6 @@ import BlinkingCursor from "./Cursor";
     const done = index === text.length; // Checks if the typing is complete
 
     return (
-      // <span className="inline-flex items-center">
-      //   <span>{displayed}</span>
-      //   {showCursor && (cursorAlwaysOn || !done) && <BlinkingCursor />}
-      // </span>
     <span className={`inline-flex items-center ${className}`}>
       <span>{displayed}</span>
       {showCursor && (cursorAlwaysOn || !done) && <BlinkingCursor />}
