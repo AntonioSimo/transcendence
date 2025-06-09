@@ -8,7 +8,7 @@ import TypewriterText from "./TypewriterText";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function SecondPanel() {
+export default function IntroAuthPage() {
   const router = useRouter();
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
